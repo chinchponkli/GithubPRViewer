@@ -55,6 +55,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-runtime:$v.lifecycle"
     implementation "androidx.lifecycle:lifecycle-extensions:$v.lifecycle"
     implementation "androidx.appcompat:appcompat:$v.appcompat"
+    implementation "androidx.cardview:cardview:$v.support"
     implementation "androidx.constraintlayout:constraintlayout:$v.constraintLayout"
     implementation "androidx.legacy:legacy-support-v4:$v.support"
     implementation "androidx.paging:paging-runtime:$v.lifecycle"
