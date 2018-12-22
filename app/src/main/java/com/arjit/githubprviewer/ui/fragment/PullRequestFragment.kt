@@ -24,8 +24,7 @@ class PullRequestFragment : Fragment() {
         fun newInstance(): PullRequestFragment = PullRequestFragment()
     }
 
-    @Inject
-    internal lateinit var pullRequestListViewModel: PullRequestListViewModel
+    @Inject internal lateinit var pullRequestListViewModel: PullRequestListViewModel
     private lateinit var binding: FragmentPullRequestBinding
     private var scrollPosition = 0
 
