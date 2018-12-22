@@ -4,6 +4,7 @@ import android.app.Application
 import com.arjit.githubprviewer.BuildConfig
 import com.arjit.githubprviewer.di.qualifier.BaseUrl
 import com.arjit.githubprviewer.di.qualifier.HeaderInterceptor
+import com.arjit.githubprviewer.service.PullRequestService
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
@@ -76,4 +77,9 @@ class NetModule(private val application: Application) {
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
+
+    @Provides
+    @Singleton
+    fun providePullRequestApi(retrofit: Retrofit): PullRequestService.PullRequestApi =
+        retrofit.create(PullRequestService.PullRequestApi::class.java)
 }
