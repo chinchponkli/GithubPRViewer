@@ -19,6 +19,7 @@ class PullRequestFragment : Fragment() {
 
     companion object {
         val TAG: String = PullRequestFragment::class.java.simpleName
+        private const val ARG_SCROLL_Y = "scroll_y"
 
         fun newInstance(): PullRequestFragment = PullRequestFragment()
     }
@@ -26,6 +27,7 @@ class PullRequestFragment : Fragment() {
     @Inject
     internal lateinit var pullRequestListViewModel: PullRequestListViewModel
     private lateinit var binding: FragmentPullRequestBinding
+    private var scrollPosition = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,5 +53,17 @@ class PullRequestFragment : Fragment() {
         pullRequestListViewModel.livePullRequests.observe(this, Observer { newList ->
             pullRequestListViewModel.adapter.submitList(newList)
         })
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        scrollPosition = savedInstanceState?.getInt(ARG_SCROLL_Y) ?: 0
+        binding.pullRequestListView.smoothScrollBy(0, scrollPosition)
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putInt(ARG_SCROLL_Y, binding.pullRequestListView.scrollY)
+        binding.pullRequestListView.scrollY
+        super.onSaveInstanceState(outState)
     }
 }
