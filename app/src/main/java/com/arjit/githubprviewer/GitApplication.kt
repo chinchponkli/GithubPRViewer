@@ -5,6 +5,7 @@ import androidx.multidex.MultiDexApplication
 import com.arjit.githubprviewer.di.component.ApplicationComponent
 import com.arjit.githubprviewer.di.component.DaggerApplicationComponent
 import com.arjit.githubprviewer.di.module.ApplicationModule
+import com.arjit.githubprviewer.di.module.NetModule
 
 class GitApplication : MultiDexApplication() {
 
@@ -23,6 +24,7 @@ class GitApplication : MultiDexApplication() {
             applicationComponent = DaggerApplicationComponent
                 .builder()
                 .applicationModule(this)
+                .netModule(NetModule(this@GitApplication))
                 .build()
         }
     }
