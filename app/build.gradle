@@ -55,5 +55,9 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$v.appcompat"
     implementation "androidx.constraintlayout:constraintlayout:$v.constraintLayout"
     implementation "androidx.legacy:legacy-support-v4:$v.support"
+    implementation "com.google.dagger:dagger:$v.dagger"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    //sorted kapts
+    kapt "com.google.dagger:dagger-compiler:$v.dagger"
 }
