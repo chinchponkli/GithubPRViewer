@@ -39,6 +39,7 @@ class PullRequestFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(layoutInflater, R.layout.fragment_pull_request, container, false)
         binding.viewModel = pullRequestListViewModel
+        binding.setLifecycleOwner(this)
         setupRecyclerView()
         observeData()
         return binding.root
