@@ -57,6 +57,7 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$v.appcompat"
     implementation "androidx.constraintlayout:constraintlayout:$v.constraintLayout"
     implementation "androidx.legacy:legacy-support-v4:$v.support"
+    implementation "androidx.paging:paging-runtime:$v.lifecycle"
     implementation "androidx.recyclerview:recyclerview:$v.support"
     implementation "com.google.dagger:dagger:$v.dagger"
     implementation "com.google.code.gson:gson:$v.gson"
