@@ -60,6 +60,7 @@ dependencies {
     implementation "androidx.legacy:legacy-support-v4:$v.support"
     implementation "androidx.paging:paging-runtime:$v.lifecycle"
     implementation "androidx.recyclerview:recyclerview:$v.support"
+    implementation "com.github.bumptech.glide:glide:$v.glide"
     implementation "com.google.dagger:dagger:$v.dagger"
     implementation "com.google.code.gson:gson:$v.gson"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$v.retrofit"
@@ -76,5 +77,6 @@ dependencies {
 
     //sorted kapts
     kapt "androidx.lifecycle:lifecycle-compiler:$v.lifecycle"
+    kapt "com.github.bumptech.glide:compiler:$v.glide"
     kapt "com.google.dagger:dagger-compiler:$v.dagger"
 }

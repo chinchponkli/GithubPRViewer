@@ -2,6 +2,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
     <data>
+        <import type="android.view.View"/>
+        <import type="android.graphics.Color"/>
+        <import type="com.arjit.githubprviewer.util.ColorUtil"/>
+        <import type="android.text.TextUtils"/>
+        <import type="com.arjit.githubprviewer.R"/>
+
         <variable name="viewModel"
                   type="com.arjit.githubprviewer.ui.viewmodel.PullRequestItemViewModel"/>
     </data>
@@ -39,6 +45,99 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     android:layout_height="wrap_content"/>
+
+            <TextView android:layout_width="wrap_content"
+                      android:padding="4dp"
+                      android:id="@+id/label1"
+                      android:textSize="@dimen/text_size_10"
+                      android:layout_marginTop="4dp"
+                      android:textStyle="bold"
+                      android:textColor="@{viewModel.pullRequest.labels.size() > 0 &amp;&amp; ColorUtil.isColorDark(viewModel.pullRequest.labels.get(0).color) ? Color.WHITE : Color.BLACK}"
+                      app:layout_constraintStart_toStartOf="parent"
+                      app:bgTint="@{viewModel.pullRequest.labels.size() > 0 ? ColorUtil.parseColor(viewModel.pullRequest.labels.get(0).color) : Color.BLUE}"
+                      app:layout_constraintTop_toBottomOf="@+id/title"
+                      android:background="@drawable/rounded_rectangle"
+                      android:text="@{viewModel.pullRequest.labels.size() > 0 ? viewModel.pullRequest.labels.get(0).name : ``}"
+                      android:visibility="@{viewModel.pullRequest.labels.size() > 0 ? View.VISIBLE : View.GONE}"
+                      android:layout_height="wrap_content"/>
+
+            <TextView android:layout_width="wrap_content"
+                      android:padding="4dp"
+                      android:id="@+id/label2"
+                      android:textSize="@dimen/text_size_10"
+                      android:layout_marginTop="4dp"
+                      android:layout_marginStart="4dp"
+                      android:textStyle="bold"
+                      android:textColor="@{viewModel.pullRequest.labels.size() > 1 &amp;&amp; ColorUtil.isColorDark(viewModel.pullRequest.labels.get(1).color) ? Color.WHITE : Color.BLACK}"
+                      app:layout_constraintStart_toEndOf="@+id/label1"
+                      android:background="@drawable/rounded_rectangle"
+                      app:bgTint="@{viewModel.pullRequest.labels.size() > 1 ? ColorUtil.parseColor(viewModel.pullRequest.labels.get(1).color) : Color.BLUE}"
+                      app:layout_constraintTop_toBottomOf="@+id/title"
+                      android:text="@{viewModel.pullRequest.labels.size() > 1 ? viewModel.pullRequest.labels.get(1).name : ``}"
+                      android:visibility="@{viewModel.pullRequest.labels.size() > 1 ? View.VISIBLE : View.GONE}"
+                      android:layout_height="wrap_content"/>
+
+            <TextView android:layout_width="wrap_content"
+                      android:padding="4dp"
+                      android:id="@+id/label3"
+                      android:textSize="@dimen/text_size_10"
+                      android:layout_marginTop="4dp"
+                      android:layout_marginStart="4dp"
+                      android:textStyle="bold"
+                      android:textColor="@{viewModel.pullRequest.labels.size() > 2 &amp;&amp; ColorUtil.isColorDark(viewModel.pullRequest.labels.get(2).color) ? Color.WHITE : Color.BLACK}"
+                      app:layout_constraintStart_toEndOf="@+id/label2"
+                      app:layout_constraintTop_toBottomOf="@+id/title"
+                      android:background="@drawable/rounded_rectangle"
+                      app:bgTint="@{viewModel.pullRequest.labels.size() > 2 ? ColorUtil.parseColor(viewModel.pullRequest.labels.get(2).color) : Color.BLUE}"
+                      android:text="@{viewModel.pullRequest.labels.size() > 2 ? viewModel.pullRequest.labels.get(2).name : ``}"
+                      android:visibility="@{viewModel.pullRequest.labels.size() > 2 ? View.VISIBLE : View.GONE}"
+                      android:layout_height="wrap_content"/>
+
+            <View android:layout_width="1dp"
+                  android:layout_height="56dp"
+                  android:maxHeight="56dp"
+                  android:id="@+id/verticalLine"
+                  app:layout_constraintStart_toStartOf="parent"
+                  android:visibility="@{TextUtils.isEmpty(viewModel.pullRequest.body) ? View.GONE : View.VISIBLE}"
+                  app:layout_constraintTop_toBottomOf="@+id/label1"
+                  android:background="@color/light_grey"
+                  android:layout_marginTop="8dp"/>
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:id="@+id/body"
+                    android:text="@{viewModel.pullRequest.body}"
+                    android:textColor="@color/light_grey"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="4dp"
+                    android:maxLines="3"
+                    android:includeFontPadding="false"
+                    android:visibility="@{TextUtils.isEmpty(viewModel.pullRequest.body) ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintStart_toEndOf="@+id/verticalLine"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/label1"
+                    android:layout_height="56dp"/>
+
+            <TextView android:layout_width="wrap_content"
+                      android:id="@+id/meta"
+                      android:text="@{`#` + viewModel.pullRequest.number + ` - opened by ` + viewModel.pullRequest.user.login}"
+                      android:textSize="@dimen/text_size_12"
+                      android:textColor="@color/grey"
+                      app:layout_constraintTop_toBottomOf="@+id/verticalLine"
+                      app:layout_constraintEnd_toStartOf="@+id/avatar"
+                      android:layout_marginTop="4dp"
+                      android:layout_marginEnd="16dp"
+                      android:layout_height="wrap_content"/>
+
+            <ImageView android:layout_width="20dp"
+                       android:id="@+id/avatar"
+                       app:imageSrcToCircle="@{viewModel.pullRequest.user.avatarUrl}"
+                       app:layout_constraintEnd_toEndOf="parent"
+                       app:layout_constraintTop_toBottomOf="@+id/verticalLine"
+                       android:layout_marginTop="2dp"
+                       app:placeholder="@{@drawable/ic_person_black}"
+                       android:layout_height="20dp"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.cardview.widget.CardView>
 </layout>
