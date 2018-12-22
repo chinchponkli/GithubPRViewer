@@ -6,6 +6,14 @@ android {
     compileSdkVersion v.compileSdk
     buildToolsVersion v.buildTools
 
+    dataBinding {
+        enabled true
+    }
+
+    lintOptions {
+        lintConfig file('lint.xml')
+    }
+
     defaultConfig {
         applicationId "com.arjit.githubprviewer"
         minSdkVersion v.minSdk

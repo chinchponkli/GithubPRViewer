@@ -1,0 +1,23 @@
+<lint>
+    <!--
+        The okio.Okio uses java.nio.file, which does
+        not ship with Android. This is not an issue for us as we don't
+        use parts of Okio which use java.nio.file.
+
+       https://github.com/square/okio/issues/58
+       https://github.com/codepath/android_guides/wiki/Consuming-APIs-with-Retrofit
+    -->
+    <issue id="InvalidPackage">
+        <ignore path="*/okio-*.jar"/>
+        <ignore path="*/retrofit-*.jar"/>
+        <ignore path="*/requery-*.jar"/>
+    </issue>
+
+    <issue id="ContentDescription" severity="ignore" />
+    <issue id="UseCompoundDrawables" severity="ignore" />
+    <issue id="IconLocation" severity="ignore" />
+    <issue id="IconDipSize" severity="ignore" />
+
+    <!-- TODO Remove this when Lint becomes fully compatible with Kotlin -->
+    <issue id="UnusedResources" severity="ignore" />
+</lint>
