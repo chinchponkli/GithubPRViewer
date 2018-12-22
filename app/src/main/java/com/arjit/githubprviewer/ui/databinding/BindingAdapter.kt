@@ -29,4 +29,14 @@ object BindingAdapter {
     fun tintBackground(view: View, color: Int) {
         view.background?.setColorFilter(color, PorterDuff.Mode.SRC_ATOP)
     }
+
+    @JvmStatic
+    @BindingAdapter("animateLoading")
+    fun animateLoading(view: View, isLoading: Boolean) {
+        if (isLoading) {
+            view.animate().translationY(0f).setDuration(400).start()
+        } else {
+            view.animate().translationY(200f).setDuration(400).start()
+        }
+    }
 }
